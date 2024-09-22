@@ -1,0 +1,75 @@
+{% extends "base.html" %} 
+{% block title %}Home{% endblock %}
+
+{% block nombre %}
+Usuario: <span style="color: #007bff;">{{ user_name }}</span>
+{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+  <h1 class="text-center text-white">Community</h1>
+  <ul class="list-group list-group-flush" id="chats">
+    <!-- Los mensajes -->
+  </ul>
+
+  <form method="POST" action="{{ url_for('views.home') }}" class="d-flex mt-3">
+    <div class="input-group">
+      <textarea name="chat" id="chat" class="form-control bg-dark text-white border-0" rows="1" placeholder="Type your message..." required style="margin-right: 15px;"></textarea>
+      <button type="submit" class="btn btn-primary align-self-stretch">Add Chat</button>
+    </div>
+  </form>
+</div>
+
+<script>
+  function fetchMessages() {
+    fetch('{{ url_for('views.get_messages') }}')
+      .then(response => response.json())
+      .then(data => {
+        const chatsList = document.getElementById('chats');
+        chatsList.innerHTML = ''; 
+        data.chats.reverse().forEach(chat => {
+          const listItem = document.createElement('li');
+          listItem.className = 'list-group-item d-flex justify-content-between align-items-start bg-dark text-white';
+          
+          const userColor = chat.color;
+          listItem.innerHTML = `
+            <div>
+              <strong style="color: ${userColor};">${chat.user}:</strong>
+              <p class="mb-0">${chat.data}</p>
+            </div>
+          `;
+          console.log(userColor);
+          chatsList.appendChild(listItem);
+        });
+        
+        setTimeout(fetchMessages, 1000);
+      })
+      .catch(error => {
+        console.error('Error fetching messages:', error);
+        setTimeout(fetchMessages, 5000);
+      });
+  }
+  
+  fetchMessages();
+</script>
+
+<style>
+  body {
+    background-color: #212529;
+  }
+  #chats {
+    max-height: 600px; 
+    overflow-y: scroll; 
+    scrollbar-width: thin;  
+    scrollbar-color: transparent transparent; 
+  }
+  #chats::-webkit-scrollbar {
+    width: 0; 
+  }
+  .list-group-item {
+    margin-bottom: 10px; 
+    padding: 10px;
+    border-radius: 5px; 
+  }
+</style>
+{% endblock %}
