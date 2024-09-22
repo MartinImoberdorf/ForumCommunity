@@ -1,6 +1,6 @@
 # Forum Community (Backend)
 
-<span style="color: blue;">Forum Community</span> is a project aimed at enhancing my backend development skills through the use of Python and Flask. This forum application enables user registration and participation in discussions, promoting engagement and knowledge sharing within the community.
+Forum Community is a project aimed at enhancing my backend development skills through the use of Python and Flask. This forum application enables user registration and participation in discussions, promoting engagement and knowledge sharing within the community.
 
 The application is built with a robust authentication system, ensuring secure user access, and utilizes a relational database to effectively manage user data and forum posts. By leveraging Flask's features, the project facilitates real-time interactions and provides a user-friendly interface for seamless communication among members. Overall, Forum Community serves as a dynamic platform for users to connect and collaborate.
 
@@ -27,3 +27,6 @@ Running The App
 
 ## Contact
 For any questions or comments, feel free to contact us at tinchoimo@hotmail.com
+
+## Author
+- [@MartinImoberdorf](https://www.github.com/MartinImoberdorf)
