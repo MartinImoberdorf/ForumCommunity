@@ -1,4 +1,4 @@
-#### Vistas / Controllers
+#### Vista
 
 from flask import Blueprint,render_template,request, flash, jsonify
 from .models import Chat
